@@ -1,3 +1,13 @@
+/*
+ * Copyright (c) 2024 坚果派
+ * 微信公众号：nutpi
+ * 官网：https://www.nutpi.net/
+ *
+ * 作者：NutPi
+ * 创建日期：2022/03/22 16:50
+ * 
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:line_icons/line_icons.dart';
@@ -9,21 +19,21 @@ class PostItem extends StatelessWidget {
   final String name;
   final String postImg;
   final String caption;
-  final isLoved;
+  final bool isLoved;
   final String likedBy;
   final String viewCount;
   final String dayAgo;
   const PostItem({
-    Key key,
-    this.profileImg,
-    this.name,
-    this.postImg,
-    this.isLoved,
-    this.likedBy,
-    this.viewCount,
-    this.dayAgo,
-    this.caption,
-  }) : super(key: key);
+    super.key,
+    required this.profileImg,
+    required this.name,
+    required this.postImg,
+    required this.isLoved,
+    required this.likedBy,
+    required this.viewCount,
+    required this.dayAgo,
+    required this.caption,
+  });
 
   @override
   Widget build(BuildContext context) {

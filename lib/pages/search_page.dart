@@ -1,4 +1,12 @@
-
+/*
+ * Copyright (c) 2024 坚果派
+ * 微信公众号：nutpi
+ * 官网：https://www.nutpi.net/
+ *
+ * 作者：NutPi
+ * 创建日期：2022/03/22 16:50
+ * 
+ */
 
 import 'package:flutter/material.dart';
 import 'package:ig_ui_app/constant/search_json.dart';
@@ -6,6 +14,8 @@ import 'package:ig_ui_app/theme/colors.dart';
 import 'package:ig_ui_app/widgets/search_category_item.dart';
 
 class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
+
   @override
   _SearchPageState createState() => _SearchPageState();
 }
@@ -50,35 +60,39 @@ class _SearchPageState extends State<SearchPage> {
             ],
           ),
         ),
-        SizedBox(height: 15,),
+        SizedBox(
+          height: 15,
+        ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Row(children: List.generate(searchCategories.length, (index){
-            return CategoryStoryItem(
-              name: searchCategories[index],
-            );
-          })),
-                  ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: Row(
+                children: List.generate(searchCategories.length, (index) {
+              return CategoryStoryItem(
+                name: searchCategories[index],
+              );
+            })),
+          ),
         ),
-        SizedBox(height: 15,),
+        SizedBox(
+          height: 15,
+        ),
         Wrap(
           spacing: 1,
           runSpacing: 1,
-          children: List.generate(searchImages.length, (index){
+          children: List.generate(searchImages.length, (index) {
             return Container(
-          width: (size.width-3)/3,
-          height: (size.width-3)/3,
-          decoration: BoxDecoration(
-            image: DecorationImage(image: NetworkImage(searchImages[index]),fit: BoxFit.cover)
-          ),
-        );
+              width: (size.width - 3) / 3,
+              height: (size.width - 3) / 3,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(searchImages[index]),
+                      fit: BoxFit.cover)),
+            );
           }),
         )
       ],
     ));
   }
 }
-
-

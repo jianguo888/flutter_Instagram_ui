@@ -1,3 +1,13 @@
+/*
+ * Copyright (c) 2024 坚果派
+ * 微信公众号：nutpi
+ * 官网：https://www.nutpi.net/
+ *
+ * 作者：NutPi
+ * 创建日期：2022/03/22 16:50
+ * 
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ig_ui_app/pages/home_page.dart';
@@ -5,8 +15,10 @@ import 'package:ig_ui_app/pages/search_page.dart';
 import 'package:ig_ui_app/theme/colors.dart';
 
 class RootApp extends StatefulWidget {
+  const RootApp({super.key});
+
   @override
-  _RootAppState createState() => _RootAppState();
+  State<RootApp> createState() => _RootAppState();
 }
 
 class _RootAppState extends State<RootApp> {
@@ -21,69 +33,68 @@ class _RootAppState extends State<RootApp> {
       bottomNavigationBar: getFooter(),
     );
   }
-  Widget getBody(){
-    List<Widget> pages = [
-      HomePage(),
-      SearchPage(),
-      Center(
-          child: Text("Upload Page",style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: white
-          ),),
-      ),
-      Center(
-          child: Text("Activity Page",style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: white
-          ),),
-      ),
-      Center(
-          child: Text("Account Page",style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: white
-          ),),
-      )
-    ];
-    return IndexedStack(
-      index: pageIndex,
-      children: pages,
-    );
+
+  Widget getBody() {
+    if (pageIndex == 0) {
+      return const HomePage();
+    } else if (pageIndex == 1) {
+      return const SearchPage();
+    } else if (pageIndex == 2) {
+      return const Center(
+          child: Text('Upload',
+              style:
+                  TextStyle(color: white, fontSize: 16, fontFamily: 'Roboto')));
+    } else if (pageIndex == 3) {
+      return const Center(
+          child: Text('Activity',
+              style:
+                  TextStyle(color: white, fontSize: 16, fontFamily: 'Roboto')));
+    } else {
+      return const Center(
+          child: Text('Account',
+              style:
+                  TextStyle(color: white, fontSize: 16, fontFamily: 'Roboto')));
+    }
   }
-  Widget getAppBar(){
-    if(pageIndex == 0){
+
+  PreferredSizeWidget? getAppBar() {
+    if (pageIndex == 0) {
       return AppBar(
         backgroundColor: appBarColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SvgPicture.asset("assets/images/camera_icon.svg",width: 30,),
-            Text("Instagram",style: TextStyle(
-              fontFamily: 'Billabong',
-              fontSize: 35
-            ),),
-            SvgPicture.asset("assets/images/message_icon.svg",width: 30,),
+            SvgPicture.asset(
+              "assets/images/camera_icon.svg",
+              width: 30,
+            ),
+            const Text(
+              "Instagram",
+              style: TextStyle(fontFamily: 'Billabong', fontSize: 35),
+            ),
+            SvgPicture.asset(
+              "assets/images/message_icon.svg",
+              width: 30,
+            ),
           ],
         ),
       );
-    }else if(pageIndex == 1){
+    } else if (pageIndex == 1) {
       return null;
-    }else if(pageIndex == 2){
+    } else if (pageIndex == 2) {
       return AppBar(
         backgroundColor: appBarColor,
-        title: Text("Upload"),
+        title: const Text("Upload", style: TextStyle(color: white, fontSize: 16, fontFamily: 'Roboto')),
       );
-    }else if(pageIndex == 3){
+    } else if (pageIndex == 3) {
       return AppBar(
         backgroundColor: appBarColor,
-        title: Text("Activity"),
+        title: const Text("Activity", style: TextStyle(color: white, fontSize: 16, fontFamily: 'Roboto')),
       );
-    }else{
+    } else {
       return AppBar(
         backgroundColor: appBarColor,
-        title: Text("Account"),
+        title: const Text("Account", style: TextStyle(color: white, fontSize: 16, fontFamily: 'Roboto')),
       );
     }
   }

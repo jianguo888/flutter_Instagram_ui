@@ -1,5 +1,15 @@
 
 
+/*
+ * Copyright (c) 2024 坚果派
+ * 微信公众号：nutpi
+ * 官网：https://www.nutpi.net/
+ *
+ * 作者：NutPi
+ * 创建日期：2022/03/22 16:50
+ * 
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ig_ui_app/constant/post_json.dart';
@@ -11,6 +21,8 @@ import 'package:line_icons/line_icons.dart';
 import '../widgets/post_item.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -23,55 +35,55 @@ class _HomePageState extends State<HomePage> {
 
   Widget getBody() {
     return SingleChildScrollView(
-          child: Column(
-        
+      child: Column(
         children: <Widget>[
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-                    child: Row(children: <Widget>[
-              Padding(
-              padding: const EdgeInsets.only(right: 20, left: 15,bottom: 10),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    width: 65,
-                    height: 65,
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          width: 65,
-                          height: 65,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(image: NetworkImage(profile),fit: BoxFit.cover)
-                          ),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right: 20, left: 15, bottom: 10),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        width: 65,
+                        height: 65,
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              width: 65,
+                              height: 65,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(image: NetworkImage(profile),fit: BoxFit.cover)
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Container(
+                              width: 19,
+                              height: 19,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: white
+                              ),
+                              child: Icon(Icons.add_circle,color: buttonFollowColor,size: 19,),
+                            ))
+                          ],
                         ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                          width: 19,
-                          height: 19,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: white
-                          ),
-                          child: Icon(Icons.add_circle,color: buttonFollowColor,size: 19,),
-                        ))
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 8,),
+                      SizedBox(width: 70,
+                      child: Text(name,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: white
+                      ),)
+                      ,)
+                    ],
                   ),
-                  SizedBox(height: 8,),
-                  SizedBox(width: 70,
-                  child: Text(name,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: white
-                  ),)
-                  ,)
-                ],
-              ),
-            ),
+                ),
              Row(
                   children: List.generate(stories.length, (index) {
                 return StoryItem(
@@ -96,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                 isLoved: posts[index]['isLoved'],
                 viewCount: posts[index]['commentCount'],
                 likedBy: posts[index]['likedBy'],
-                dayAgo: posts[index]['dayAgo'],
+                dayAgo: posts[index]['timeAgo'],
               );
             }),
           )
